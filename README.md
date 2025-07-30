@@ -43,7 +43,6 @@ This is a real-world system meant to simulate how food ordering systems work—w
    * dotenv
    * ejs
    * express
-   * helmet
    * method-override
    * nodemon (for development)
    * pg (PostgreSQL client)
