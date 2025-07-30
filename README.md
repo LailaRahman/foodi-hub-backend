@@ -27,8 +27,8 @@ This is a real-world system meant to simulate how food ordering systems work—w
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/foodi-hub.git
-   cd foodi-hub
+   git clone https://github.com/LailaRahman/foodi-hub-backend
+   cd foodi-hub-backend
    ```
 
 2. Install dependencies:
