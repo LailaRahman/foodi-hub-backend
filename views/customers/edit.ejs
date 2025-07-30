@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Customer - Foodi-Hub</title>
+</head>
+<body>
+  <h1>Edit Customer</h1>
+  <form action="/customers/edit/<%= customer.id %>?_method=PUT" method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" value="<%= customer.name %>" required />
+
+    <label for="email">Email:</label>
+<input type="email" name="email" value="<%= customer.email %>" required />
+
+
+    <button type="submit">Update</button>
+  </form>
+  <a href="/customers">⬅ Back to Customers</a>
+</body>
+</html>

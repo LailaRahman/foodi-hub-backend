@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders - Foodi-Hub</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  
+</head>
+<body>
+  <h1>📦 Orders</h1>
+
+  <a class="btn" href="/orders/create">➕ Place New Order</a>
+  <a class="btn" href="/">🏠 Back to Home</a>
+
+  <ul>
+    <% if (orders.length === 0) { %>
+      <li>No orders found.</li>
+    <% } else { %>
+      <% orders.forEach(order => { %>
+        <li>
+          <strong>Order #<%= order.id %></strong> from <strong><%= order.restaurant_name %></strong><br>
+          👤 Customer: <%= order.customer_name %><br>
+          🕒 Created: <%= new Date(order.created_at).toLocaleString() %><br>
+          🏷️ Status:
+          
+          <!-- Update Status -->
+          <form class="inline" action="/orders/status/<%= order.id %>?_method=PUT" method="POST">
+            <select name="status" onchange="this.form.submit()">
+              <option value="pending" <%= order.status === 'pending' ? 'selected' : '' %>>Pending</option>
+              <option value="completed" <%= order.status === 'completed' ? 'selected' : '' %>>Completed</option>
+              <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+            </select>
+          </form>
+
+          <!-- Delete Order -->
+          <form class="inline" action="/orders/delete/<%= order.id %>?_method=DELETE" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?');">
+            <button class="btn" type="submit">🗑️ Delete</button>
+          </form>
+        </li>
+      <% }); %>
+    <% } %>
+  </ul>
+
+</body>
+</html>

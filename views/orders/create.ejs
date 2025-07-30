@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order</title>
+</head>
+<body>
+  <h1>Place a New Order</h1>
+
+<form action="/orders/create" method="POST">
+  <label>Customer:</label>
+  <select name="customer_id" required>
+    <% customers.forEach(c => { %>
+      <option value="<%= c.id %>"><%= c.name %></option>
+    <% }) %>
+  </select>
+
+  <label>Restaurant:</label>
+  <select name="restaurant_id" required>
+    <% restaurants.forEach(r => { %>
+      <option value="<%= r.id %>"><%= r.name %></option>
+    <% }) %>
+  </select>
+
+  <label>Menu Items:</label>
+  <% menuItems.forEach(item => { %>
+    <div>
+      <input type="checkbox" name="items" value="<%= item.id %>-1" onchange="toggleQuantity(this)">
+      <%= item.name %> - $<%= item.price %>
+      <input type="number" name="quantity_<%= item.id %>" value="1" min="1" disabled />
+    </div>
+  <% }) %>
+
+  <button type="submit">Place Order</button>
+</form>
+
+<a href="/">🏠 Back to Home</a>
+
+<script>
+  function toggleQuantity(checkbox) {
+    const input = document.querySelector(`[name=quantity_${checkbox.value.split('-')[0]}]`);
+    if (checkbox.checked) {
+      input.disabled = false;
+      checkbox.value = `${checkbox.value.split('-')[0]}-${input.value}`;
+      input.addEventListener('input', () => {
+        checkbox.value = `${checkbox.value.split('-')[0]}-${input.value}`;
+      });
+    } else {
+      input.disabled = true;
+    }
+  }
+</script>
+
+</body>
+</html>

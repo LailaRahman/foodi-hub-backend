@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurants - Foodi-Hub</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Restaurants</h1>
+
+  <a href="/restaurants/create" class="btn btn-primary">➕ Add New Restaurant</a>
+
+  <ul>
+  <% restaurants.forEach(restaurant => { %>
+    <li>
+      <strong><%= restaurant.name %></strong> - <%= restaurant.address %>
+      
+      <a href="/restaurants/edit/<%= restaurant.id %>" class="btn btn-warning">✏️ Edit</a>
+
+      <form action="/restaurants/delete/<%= restaurant.id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this restaurant?')">🗑️ Delete</button>
+      </form>
+    </li>
+  <% }); %>
+</ul>
+
+  <a href="/">⬅️ Back to Home</a>
+</body>
+</html>

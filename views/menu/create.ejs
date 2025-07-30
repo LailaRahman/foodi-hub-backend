@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Menu Item</title>
+</head>
+<body>
+  <h1>Add New Menu Item</h1>
+ <form method="POST" action="/menu/restaurant/<%= restaurantId %>/new">
+  <label>
+    Name:
+    <input type="text" name="name" required>
+  </label>
+  <br>
+  <label>
+    Price:
+    <input type="number" name="price" step="0.01" required>
+  </label>
+  <br>
+  <button type="submit">Add Menu Item</button>
+</form>
+  <br>
+  <a href="/menu/restaurant/<%= restaurantId %>">⬅ Back to Menu</a>
+</body>
+</html>

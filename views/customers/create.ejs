@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Customer - Foodi-Hub</title>
+</head>
+<body>
+  <h1>Add Customer</h1>
+  <form action="/customers/create" method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" required />
+
+    <label for="email">Email:</label>
+  <input type="email" name="email" required />
+
+    <button type="submit">Add</button>
+  </form>
+  <a href="/customers">⬅ Back to Customers</a>
+</body>
+</html>

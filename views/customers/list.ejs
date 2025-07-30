@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customers - Foodi-Hub</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Customers</h1>
+  <a href="/customers/create">➕ Add Customer</a>
+  <ul>
+    <% customers.forEach(c => { %>
+      <li>
+        <%= c.name %> - <%= c.phone_number %>
+
+        <a href="/customers/edit/<%= c.id %>">✏️ Edit</a>
+
+        <form action="/customers/delete/<%= c.id %>?_method=DELETE" method="POST" style="display:inline;">
+          <button type="submit">🗑️ Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+
+  <a href="/">🏠 Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= restaurantName %> Menu</title>
+</head>
+<body>
+  <h1><%= restaurantName %> Menu</h1>
+
+  <% if (items.length === 0) { %>
+    <p>No menu items found.</p>
+  <% } else { %>
+    <ul>
+      <% items.forEach(item => { %>
+        <li>
+          <strong><%= item.name %></strong> - $<%= parseFloat(item.price).toFixed(2) %>
+
+          <!-- ✏️ Edit Link -->
+          <a href="/menu/edit/<%= item.id %>">✏️ Edit</a>
+
+          <!-- 🗑️ Delete Form -->
+          <form action="/menu/delete/<%= item.id %>?_method=DELETE" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
+            <button type="submit">🗑️ Delete</button>
+          </form>
+
+          <!-- ✅ Toggle availability -->
+          <% if (item.is_available) { %>
+            <form action="/menu/toggle/<%= item.id %>" method="POST" style="display:inline;">
+              <button type="submit">Mark Unavailable</button>
+            </form>
+          <% } else { %>
+            <form action="/menu/toggle/<%= item.id %>" method="POST" style="display:inline;">
+              <button type="submit">Mark Available</button>
+            </form>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <a href="/menu/restaurant/<%= restaurantId %>/new">➕ Add New Menu Item</a><br><br>
+  <a href="/">🏠 Back to Home</a>
+</body>
+</html>
